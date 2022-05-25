@@ -17,7 +17,7 @@ void main() {
               onSendPressed: (types.PartialText message) {},
               sendButtonVisibilityMode: SendButtonVisibilityMode.always,
               user:
-                  const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66666c'),
+                  const types.User(uid: '06c33e8b-e835-4736-80f4-63f44b66666c'),
             ),
           ),
         ),
@@ -41,7 +41,7 @@ void main() {
               onSendPressed: (types.PartialText message) {},
               sendButtonVisibilityMode: SendButtonVisibilityMode.hidden,
               user:
-                  const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66666c'),
+                  const types.User(uid: '06c33e8b-e835-4736-80f4-63f44b66666c'),
             ),
           ),
         ),
@@ -64,7 +64,7 @@ void main() {
               messages: const [],
               onSendPressed: (types.PartialText message) {},
               user:
-                  const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66666c'),
+                  const types.User(uid: '06c33e8b-e835-4736-80f4-63f44b66666c'),
             ),
           ),
         ),
@@ -87,7 +87,7 @@ void main() {
               messages: const [],
               onSendPressed: (types.PartialText message) {},
               user:
-                  const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66666c'),
+                  const types.User(uid: '06c33e8b-e835-4736-80f4-63f44b66666c'),
             ),
           ),
         ),
@@ -116,7 +116,7 @@ void main() {
               messages: const [],
               onSendPressed: (types.PartialText message) => isCalled = true,
               user:
-                  const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66666c'),
+                  const types.User(uid: '06c33e8b-e835-4736-80f4-63f44b66666c'),
             ),
           ),
         ),
@@ -156,7 +156,7 @@ void main() {
               onAttachmentPressed: () => isCalled = true,
               onSendPressed: (types.PartialText message) => {},
               user:
-                  const types.User(id: '06c33e8b-e835-4736-80f4-63f44b66666c'),
+                  const types.User(uid: '06c33e8b-e835-4736-80f4-63f44b66666c'),
             ),
           ),
         ),

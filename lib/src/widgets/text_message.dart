@@ -68,14 +68,14 @@ class TextMessage extends StatelessWidget {
     double width,
     BuildContext context,
   ) {
-    final linkDescriptionTextStyle = user.id == message.author.id
+    final linkDescriptionTextStyle = user.uid == message.author.uid
         ? InheritedChatTheme.of(context)
             .theme
             .sentMessageLinkDescriptionTextStyle
         : InheritedChatTheme.of(context)
             .theme
             .receivedMessageLinkDescriptionTextStyle;
-    final linkTitleTextStyle = user.id == message.author.id
+    final linkTitleTextStyle = user.uid == message.author.uid
         ? InheritedChatTheme.of(context).theme.sentMessageLinkTitleTextStyle
         : InheritedChatTheme.of(context)
             .theme
@@ -107,19 +107,19 @@ class TextMessage extends StatelessWidget {
   ) {
     final isIOS = Theme.of(context).platform == TargetPlatform.iOS;
     final theme = InheritedChatTheme.of(context).theme;
-    final bodyLinkTextStyle = user.id == message.author.id
+    final bodyLinkTextStyle = user.uid == message.author.uid
         ? InheritedChatTheme.of(context).theme.sentMessageBodyLinkTextStyle
         : InheritedChatTheme.of(context).theme.receivedMessageBodyLinkTextStyle;
-    final bodyTextStyle = user.id == message.author.id
+    final bodyTextStyle = user.uid == message.author.uid
         ? theme.sentMessageBodyTextStyle
         : theme.receivedMessageBodyTextStyle;
-    final boldTextStyle = user.id == message.author.id
+    final boldTextStyle = user.uid == message.author.uid
         ? theme.sentMessageBodyBoldTextStyle
         : theme.receivedMessageBodyBoldTextStyle;
-    final codeTextStyle = user.id == message.author.id
+    final codeTextStyle = user.uid == message.author.uid
         ? theme.sentMessageBodyCodeTextStyle
         : theme.receivedMessageBodyCodeTextStyle;
-    final emojiTextStyle = user.id == message.author.id
+    final emojiTextStyle = user.uid == message.author.uid
         ? theme.sentEmojiMessageTextStyle
         : theme.receivedEmojiMessageTextStyle;
 
@@ -127,7 +127,7 @@ class TextMessage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (showName)
-          nameBuilder?.call(message.author.id) ??
+          nameBuilder?.call(message.author.uid!) ??
               UserName(author: message.author),
         if (enlargeEmojis)
           if (isTextMessageTextSelectable)

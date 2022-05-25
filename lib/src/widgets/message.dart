@@ -151,7 +151,7 @@ class Message extends StatelessWidget {
   final bool usePreviewData;
 
   Widget _avatarBuilder() => showAvatar
-      ? avatarBuilder?.call(message.author.id) ??
+      ? avatarBuilder?.call(message.author.uid!) ??
           UserAvatar(author: message.author, onAvatarTap: onAvatarTap)
       : const SizedBox(width: 40);
 
@@ -277,7 +277,7 @@ class Message extends StatelessWidget {
   Widget build(BuildContext context) {
     final _query = MediaQuery.of(context);
     final _user = InheritedUser.of(context).user;
-    final _currentUserIsAuthor = _user.id == message.author.id;
+    final _currentUserIsAuthor = _user.uid == message.author.uid;
     final _enlargeEmojis =
         emojiEnlargementBehavior != EmojiEnlargementBehavior.never &&
             message is types.TextMessage &&

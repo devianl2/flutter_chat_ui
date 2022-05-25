@@ -391,7 +391,7 @@ class _ChatState extends State<Chat> {
       final map = object as Map<String, Object>;
       final message = map['message']! as types.Message;
       final _messageWidth =
-          widget.showUserAvatars && message.author.id != widget.user.id
+          widget.showUserAvatars && message.author.uid != widget.user.uid
               ? min(constraints.maxWidth * 0.72, 440).floor()
               : min(constraints.maxWidth * 0.78, 440).floor();
 

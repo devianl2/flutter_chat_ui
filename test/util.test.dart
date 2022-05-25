@@ -20,7 +20,7 @@ void main() {
   group('getUserAvatarNameColor', () {
     test('returns correct avatar color', () {
       types.User user =
-          const types.User(firstName: 'John', id: '1', lastName: 'Doe');
+          const types.User(displayName: 'John', uid: '1');
       expect(getUserAvatarNameColor(user, colors), const Color(0xff66e0da));
     });
   });
@@ -28,7 +28,7 @@ void main() {
   group('getUserInitials', () {
     test('returns correct user initials', () {
       types.User user =
-          const types.User(firstName: 'John', id: '1', lastName: 'Doe');
+          const types.User(displayName: 'John', uid: '1');
       expect(getUserInitials(user), 'JD');
     });
   });
@@ -37,21 +37,16 @@ void main() {
     test('returns correct user name when first name and last name provided',
         () {
       types.User user =
-          const types.User(firstName: 'John', id: '1', lastName: 'Doe');
+          const types.User(displayName: 'John', uid: '1');
       expect(getUserName(user), 'John Doe');
     });
 
     test('returns correct user name when only first name provided', () {
       types.User user = const types.User(
-        firstName: 'John',
-        id: '1',
+        displayName: 'John',
+        uid: '1',
       );
       expect(getUserName(user), 'John');
-    });
-
-    test('returns correct user name when only last name provided', () {
-      types.User user = const types.User(id: '1', lastName: 'Doe');
-      expect(getUserName(user), 'Doe');
     });
   });
 
@@ -67,7 +62,7 @@ void main() {
   group('isConsistsOfEmojis', () {
     test('returns false if text doesnt contain emoji', () {
       types.TextMessage message = const types.TextMessage(
-        author: types.User(id: '1'),
+        author: types.User(uid: '1'),
         id: '1',
         text: 'test',
       );
@@ -79,7 +74,7 @@ void main() {
 
     test('returns true if text contains emoji', () {
       types.TextMessage message = const types.TextMessage(
-        author: types.User(id: '1'),
+        author: types.User(uid: '1'),
         id: '1',
         text: '😊',
       );
@@ -92,7 +87,7 @@ void main() {
 
   group('calculateChatMessages', () {
     test('correctly returns calculated chat messages', () {
-      types.User user = const types.User(id: '1');
+      types.User user = const types.User(uid: '1');
       types.TextMessage message = types.TextMessage(
         author: user,
         id: '1',

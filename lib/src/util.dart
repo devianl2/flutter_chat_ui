@@ -21,18 +21,14 @@ String formatBytes(int size, [int fractionDigits = 2]) {
 
 /// Returns user avatar and name color based on the ID
 Color getUserAvatarNameColor(types.User user, List<Color> colors) =>
-    colors[user.id.hashCode % colors.length];
+    colors[user.uid.hashCode % colors.length];
 
 /// Returns user initials (can have only first letter of firstName/lastName or both)
 String getUserInitials(types.User user) {
   String initials = '';
 
-  if ((user.firstName ?? '').isNotEmpty) {
-    initials += user.firstName![0].toUpperCase();
-  }
-
-  if ((user.lastName ?? '').isNotEmpty) {
-    initials += user.lastName![0].toUpperCase();
+  if ((user.displayName ?? '').isNotEmpty) {
+    initials += user.displayName![0].toUpperCase();
   }
 
   return initials.trim();
@@ -40,7 +36,7 @@ String getUserInitials(types.User user) {
 
 /// Returns user name as joined firstName and lastName
 String getUserName(types.User user) =>
-    '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
+    (user.displayName ?? 'Unknown').trim();
 
 /// Returns formatted date used as a divider between different days in the
 /// chat history
@@ -111,8 +107,8 @@ List<Object> calculateChatMessages(
     final messageHasCreatedAt = message.createdAt != null;
     final nextMessage = isLast ? null : messages[i - 1];
     final nextMessageHasCreatedAt = nextMessage?.createdAt != null;
-    final nextMessageSameAuthor = message.author.id == nextMessage?.author.id;
-    final notMyMessage = message.author.id != user.id;
+    final nextMessageSameAuthor = message.author.uid == nextMessage?.author.uid;
+    final notMyMessage = message.author.uid != user.uid;
 
     var nextMessageDateThreshold = false;
     var nextMessageDifferentDay = false;
@@ -123,7 +119,7 @@ List<Object> calculateChatMessages(
       final previousMessage = isFirst ? null : messages[i + 1];
 
       final isFirstInGroup = notMyMessage &&
-          ((message.author.id != previousMessage?.author.id) ||
+          ((message.author.uid != previousMessage?.author.uid) ||
               (messageHasCreatedAt &&
                   previousMessage?.createdAt != null &&
                   message.createdAt! - previousMessage!.createdAt! >
