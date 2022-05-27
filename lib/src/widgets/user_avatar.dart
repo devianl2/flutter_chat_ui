@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 
 import '../util.dart';
 import 'inherited_chat_theme.dart';
@@ -21,32 +22,15 @@ class UserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = getUserAvatarNameColor(
-      author,
-      InheritedChatTheme.of(context).theme.userAvatarNameColors,
-    );
-    final hasImage = author.imageUrl != null;
-    final initials = getUserInitials(author);
 
     return Container(
       margin: const EdgeInsetsDirectional.only(end: 8),
       child: GestureDetector(
         onTap: () => onAvatarTap?.call(author),
-        child: CircleAvatar(
-          backgroundColor: hasImage
-              ? InheritedChatTheme.of(context)
-                  .theme
-                  .userAvatarImageBackgroundColor
-              : color,
-          backgroundImage: hasImage ? NetworkImage(author.imageUrl!) : null,
-          radius: 16,
-          child: !hasImage
-              ? Text(
-                  initials,
-                  style:
-                      InheritedChatTheme.of(context).theme.userAvatarTextStyle,
-                )
-              : null,
+        child: ProfilePicture(
+          name: author.displayName ?? 'Unknown',
+          radius: 16.0,
+          fontsize: 9.0,
         ),
       ),
     );
